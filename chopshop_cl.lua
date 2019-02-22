@@ -13,7 +13,6 @@ local chopShopLocations = {
     -- Add More if you want :D
 }
 
-local selectRandomVehicle = randomVehicles[math.random(1, #randomVehicles)]
 local timer = false
 Citizen.CreateThread(function()
     for _, item in pairs(chopShopLocations) do
@@ -41,6 +40,7 @@ Citizen.CreateThread(function()
                         if IsControlJustPressed(1, 86) then
                             Countdown = GetGameTimer() + 600 * 1000
                             timer = true
+                            local selectRandomVehicle = randomVehicles[math.random(1, #randomVehicles)]
                             if selectRandomVehicle.model == "LANDSTAL" then
                                 TriggerEvent('chatMessage', 'Chop Shop', {255, 123, 0}, "^4Find the Chop Shop a LANDSTALKER")
                             else
