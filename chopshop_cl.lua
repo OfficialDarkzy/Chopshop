@@ -39,9 +39,9 @@ Citizen.CreateThread(function()
                     if not timer then
                         drawText('Press ~r~E~s~ to get a Vehicle to find!',0,1,0.5,0.8,0.6,255,255,255,255)
                         if IsControlJustPressed(1, 86) then
+                            selectRandomVehicle = randomVehicles[math.random(1, #randomVehicles)]
                             Countdown = GetGameTimer() + 600 * 1000
                             timer = true
-                            selectRandomVehicle = randomVehicles[math.random(1, #randomVehicles)]
                             TriggerEvent('chatMessage', 'Chop Shop', {255, 123, 0}, "^4Find the Chop Shop a "..selectRandomVehicle.label.."")
                         end
                     elseif timer and vehicle ~= false then
@@ -49,7 +49,7 @@ Citizen.CreateThread(function()
                         local currentVeh = GetDisplayNameFromVehicleModel(GetEntityModel(GetVehiclePedIsUsing(GetPlayerPed(PlayerId()))))
                         if IsControlJustPressed(1, 86) then
                             if currentVeh == selectRandomVehicle.model then
-                                print("correct vehicle")
+                                selectRandomVehicle = nil
                                 timer = false
                                 TriggerServerEvent("Darkzy:PayDeManPlz", selectRandomVehicle.price)
                                 local vehicleIn = GetVehiclePedIsUsing(ped)
