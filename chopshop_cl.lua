@@ -14,6 +14,7 @@ local chopShopLocations = {
 }
 
 local timer = false
+local selectRandomVehicle = nil
 Citizen.CreateThread(function()
     for _, item in pairs(chopShopLocations) do
 		item.blip = AddBlipForCoord(item.x, item.y, item.z)
@@ -40,7 +41,7 @@ Citizen.CreateThread(function()
                         if IsControlJustPressed(1, 86) then
                             Countdown = GetGameTimer() + 600 * 1000
                             timer = true
-                            local selectRandomVehicle = randomVehicles[math.random(1, #randomVehicles)]
+                            selectRandomVehicle = randomVehicles[math.random(1, #randomVehicles)]
                             TriggerEvent('chatMessage', 'Chop Shop', {255, 123, 0}, "^4Find the Chop Shop a "..selectRandomVehicle.label.."")
                         end
                     elseif timer and vehicle ~= false then
@@ -48,6 +49,7 @@ Citizen.CreateThread(function()
                         local currentVeh = GetDisplayNameFromVehicleModel(GetEntityModel(GetVehiclePedIsUsing(GetPlayerPed(PlayerId()))))
                         if IsControlJustPressed(1, 86) then
                             if currentVeh == selectRandomVehicle.model then
+                                print("correct vehicle")
                                 timer = false
                                 TriggerServerEvent("Darkzy:PayDeManPlz", selectRandomVehicle.price)
                                 local vehicleIn = GetVehiclePedIsUsing(ped)
