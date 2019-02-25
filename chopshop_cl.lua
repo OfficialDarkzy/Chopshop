@@ -1,10 +1,10 @@
 local randomVehicles = {
-    {model = "ADDER", price = 2300},
-    {model = "SANDKING", price = 800},
-    {model = "LANDSTAL", price = 1000},
-    {model = "SUPERDIAMOND", price = 1600},
-    {model = "SABREGT", price = 900},
-    {model = "PANTO", price = 750}
+    {model = "ADDER", label = "Adder", price = 2300},
+    {model = "SANDKING", label = "Sandking", price = 800},
+    {model = "LANDSTAL", label = "Landstalker", price = 1000},
+    {model = "SUPERDIAMOND", label = "Superdiamond", price = 1600},
+    {model = "SABREGT", label = "Sabre GT", price = 900},
+    {model = "PANTO", label = "Panto", price = 750}
     -- Add more vehicles you want.
 }
 
@@ -41,11 +41,7 @@ Citizen.CreateThread(function()
                             Countdown = GetGameTimer() + 600 * 1000
                             timer = true
                             local selectRandomVehicle = randomVehicles[math.random(1, #randomVehicles)]
-                            if selectRandomVehicle.model == "LANDSTAL" then
-                                TriggerEvent('chatMessage', 'Chop Shop', {255, 123, 0}, "^4Find the Chop Shop a LANDSTALKER")
-                            else
-                                TriggerEvent('chatMessage', 'Chop Shop', {255, 123, 0}, "^4Find the Chop Shop a "..selectRandomVehicle.model.."")
-                            end
+                            TriggerEvent('chatMessage', 'Chop Shop', {255, 123, 0}, "^4Find the Chop Shop a "..selectRandomVehicle.label.."")
                         end
                     elseif timer and vehicle ~= false then
                         drawText('Press ~r~E~s~ to Chop Vehicle',0,1,0.5,0.8,0.6,255,255,255,255)
