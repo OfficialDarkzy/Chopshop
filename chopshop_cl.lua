@@ -49,7 +49,7 @@ Citizen.CreateThread(function()
                         local currentVeh = GetDisplayNameFromVehicleModel(GetEntityModel(GetVehiclePedIsUsing(GetPlayerPed(PlayerId()))))
                         if IsControlJustPressed(1, 86) then
                             if currentVeh == selectRandomVehicle.model then
-                                selectRandomVehicle = nil
+                                --selectRandomVehicle = nil
                                 timer = false
                                 TriggerServerEvent("Darkzy:PayDeManPlz", selectRandomVehicle.price)
                                 local vehicleIn = GetVehiclePedIsUsing(ped)
